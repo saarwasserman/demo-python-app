@@ -40,5 +40,6 @@ jobs:
 
       - name: Run Tests
         run: export PATH="/opt/venv/bin:$PATH" &&
-             ls /opt/venv &&
-             pytest -v
+             echo $PATH &&
+             ls /opt/venv/bin &&
+             /opt/venv/bin/pytest -v
