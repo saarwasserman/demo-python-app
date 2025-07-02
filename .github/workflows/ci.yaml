@@ -42,4 +42,4 @@ jobs:
       - name: Run Tests
         env:
           PATH: /opt/venv/bin:${{ env.PATH }}
-        run: pytest -v
+        run: env && ls /opt/venv && pytest -v
