@@ -14,7 +14,7 @@ env:
   PATH: /opt/venv/bin:$PATH
 
 jobs:
-  install:
+  Unit_Tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -35,9 +35,13 @@ jobs:
         run: $POETRY_HOME/bin/poetry --version
 
       - name: Install dependencies
+        env:
+          PATH: /opt/venv/bin:${{ env.PATH }}
         run: python3 -m venv /opt/venv && \
              /opt/venv/bin/activate && \
              $POETRY_HOME/bin/poetry install --no-root
 
       - name: Run Tests
+        env:
+          PATH: /opt/venv/bin:${{ env.PATH }}
         run: pytest  # or your preferred test command
