@@ -26,14 +26,13 @@ jobs:
           python-version: '3.12'  # or your required version
 
       - name: Install Poetry
-        uses: abatilo/actions-poetry@v2
-        with:
-          poetry-version: '1.8.2'  # update as needed
+        run: python3 -m venv $POETRY_HOME && \
+             $POETRY_HOME/bin/pip install poetry==$POETRY_VERSION
 
       - name: Check if poetry is installed
         run: $POETRY_HOME/bin/poetry --version
 
-      - name: Install dependencies
+      - name: Install dependencies in a new virtual environment
         env:
           PATH: /opt/venv/bin:${{ env.PATH }}
         run: python3 -m venv /opt/venv && \
@@ -43,4 +42,4 @@ jobs:
       - name: Run Tests
         env:
           PATH: /opt/venv/bin:${{ env.PATH }}
-        run: pytest  # or your preferred test command
+        run: pytest -v
