@@ -11,7 +11,7 @@ env:
   PYTHONUNBUFFERED: 1
   POETRY_HOME: /opt/poetry
   POETRY_VERSION: 1.8.2
-  PATH: /opt/venv/bin:${{ env.PATH }}
+  PATH: /opt/venv/bin:$PATH
 
 jobs:
   install:
@@ -32,12 +32,12 @@ jobs:
           poetry-version: '1.8.2'  # update as needed
 
       - name: Check if poetry is installed
-        run: ${{ env.POETRY_HOME }}/bin/poetry --version
+        run: $POETRY_HOME/bin/poetry --version
 
-      - name: 📦 Install dependencies
+      - name: Install dependencies
         run: python3 -m venv /opt/venv && \
              /opt/venv/bin/activate && \
-             ${{ env.POETRY_HOME }}/bin/poetry install --no-root
+             $POETRY_HOME/bin/poetry install --no-root
 
       - name: Run Tests
         run: pytest  # or your preferred test command
