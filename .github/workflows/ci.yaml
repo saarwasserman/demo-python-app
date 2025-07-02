@@ -1,0 +1,43 @@
+name: Setup Poetry and Install Dependencies
+
+on:
+  push:
+    branches: ["*"]
+  pull_request:
+    branches: ["*"]
+
+env:
+  PYTHONDONTWRITEBYTECODE: 1
+  PYTHONUNBUFFERED: 1
+  POETRY_HOME: /opt/poetry
+  POETRY_VERSION: 1.8.2
+  PATH: /opt/venv/bin:${{ env.PATH }}
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'  # or your required version
+
+      - name: Install Poetry
+        uses: abatilo/actions-poetry@v2
+        with:
+          poetry-version: '1.8.2'  # update as needed
+
+      - name: Check if poetry is installed
+        run: ${{ env.POETRY_HOME }}/bin/poetry --version
+
+      - name: 📦 Install dependencies
+        run: python3 -m venv /opt/venv && \
+             /opt/venv/bin/activate && \
+             ${{ env.POETRY_HOME }}/bin/poetry install --no-root
+
+      - name: Run Tests
+        run: pytest  # or your preferred test command
