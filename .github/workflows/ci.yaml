@@ -35,7 +35,7 @@ jobs:
       - name: Install dependencies in a new virtual environment
         run: export PATH="/opt/venv/bin:$PATH" &&
              python3 -m venv /opt/venv &&
-             /opt/venv/bin/activate &&
+             . /opt/venv/bin/activate &&
              $POETRY_HOME/bin/poetry install --no-root
 
       - name: Run Tests
