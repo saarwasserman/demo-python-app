@@ -26,7 +26,7 @@ jobs:
           python-version: '3.12'  # or your required version
 
       - name: Install Poetry
-        run: python3 -m venv $POETRY_HOME && \
+        run: python3 -m venv $POETRY_HOME &&
              $POETRY_HOME/bin/pip install poetry==$POETRY_VERSION
 
       - name: Check if poetry is installed
@@ -35,8 +35,8 @@ jobs:
       - name: Install dependencies in a new virtual environment
         env:
           PATH: /opt/venv/bin:${{ env.PATH }}
-        run: python3 -m venv /opt/venv && \
-             /opt/venv/bin/activate && \
+        run: python3 -m venv /opt/venv &&
+             /opt/venv/bin/activate &&
              $POETRY_HOME/bin/poetry install --no-root
 
       - name: Run Tests
