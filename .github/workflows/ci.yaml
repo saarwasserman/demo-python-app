@@ -39,7 +39,4 @@ jobs:
              $POETRY_HOME/bin/poetry install --no-root
 
       - name: Run Tests
-        run: export PATH="/opt/venv/bin:$PATH" &&
-             echo $PATH &&
-             ls /opt/venv/bin &&
-             /opt/venv/bin/pytest -v
+        run: pytest -v
