@@ -33,13 +33,11 @@ jobs:
         run: $POETRY_HOME/bin/poetry --version
 
       - name: Install dependencies in a new virtual environment
-        env:
-          PATH: /opt/venv/bin:${{ env.PATH }}
-        run: python3 -m venv /opt/venv &&
+        run: export PATH="/opt/venv/bin:$PATH" &&
+             python3 -m venv /opt/venv &&
              /opt/venv/bin/activate &&
              $POETRY_HOME/bin/poetry install --no-root
 
       - name: Run Tests
-        env:
-          PATH: /opt/venv/bin:${{ env.PATH }}
-        run: env && ls /opt/venv && pytest -v
+        run: export PATH="/opt/venv/bin:$PATH" &&
+             pytest -v
