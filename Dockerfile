@@ -1,4 +1,4 @@
-FROM python:3.12-slim-bookworm AS builder
+FROM python:3.12.11-slim-bookworm AS builder
 
 
 # Python
@@ -29,7 +29,7 @@ RUN python3 -m venv /opt/venv \
 
 COPY . /app
 
-FROM python:3.12-slim-bookworm AS runtime
+FROM python:3.12.11-slim-bookworm AS runtime
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
