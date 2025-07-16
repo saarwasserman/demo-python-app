@@ -4,7 +4,7 @@ from app.main import app
 import pytest
 
 
-@pytest.mark.anyio
+@pytest.mark.asyncio
 async def test_root():
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"

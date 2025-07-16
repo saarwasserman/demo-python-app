@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-python
+  name: demo-python-app
   namespace: apps
   labels:
-    app: hello-python
+    app: demo-python-app
     version: 1.0.0
 spec:
   selector:
     matchLabels:
-      app: hello-python
+      app: demo-python-app
   replicas: 1
   template:
     metadata:
       labels:
-        app: hello-python
+        app: demo-python-app
     spec:
       containers:
-      - name: hello-python
-        image: saarwasserman/hello-python:latest
+      - name: demo-python-app
+        image: saarwasserman/demo-python-app:latest
         resources:
           limits:
             memory: "128Mi"

@@ -7,5 +7,5 @@ resources:
 patches:
   - target:
       kind: HorizontalPodAutoscaler
-      name: hello-python
+      name: demo-python-app
     path: hpa.yaml

@@ -62,6 +62,6 @@ jobs:
           file: Dockerfile
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: ${{ vars.DOCKERHUB_USERNAME }}/hello-python:latest
-          cache-from: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/hello-python:cache
-          cache-to: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/hello-python:cache,mode=max
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/demo-python-app:latest
+          cache-from: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/demo-python-app:cache
+          cache-to: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/demo-python-app:cache,mode=max
