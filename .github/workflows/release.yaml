@@ -26,7 +26,7 @@ jobs:
         id: branch-name
         run: |
           TAG_NAME="${GITHUB_REF##*/}"
-          RELEASE_BRANCH="release/${TAG_NAME#v}"
+          RELEASE_BRANCH="release/${TAG_NAME}"
           echo "Release branch: $RELEASE_BRANCH"
           echo "RELEASE_BRANCH=$RELEASE_BRANCH" >> $GITHUB_ENV
           echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
