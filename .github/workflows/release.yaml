@@ -16,51 +16,6 @@ jobs:
         with:
           ref: ${{ github.ref }}  # Checkout the commit associated with the tag
 
-      # Fetch all branches and tags to make sure we have up-to-date references
-      - name: Fetch all branches and tags
-        run: |
-          git fetch --all --tags
-
-      # Get the release branch name based on the tag (assuming tag format v<major>.<minor>.<patch>)
-      - name: Get release branch name
-        id: branch-name
-        run: |
-          TAG_NAME="${GITHUB_REF##*/}"
-          RELEASE_BRANCH="release/${TAG_NAME}"
-          echo "Release branch: $RELEASE_BRANCH"
-          echo "RELEASE_BRANCH=$RELEASE_BRANCH" >> $GITHUB_ENV
-          echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
-
-      # Merge the release branch to the dev branch
-      - name: Merge release branch to dev
-        run: |
-          git checkout dev
-          git pull origin dev
-          git merge --no-ff "${{ env.RELEASE_BRANCH }}" -m "Merge ${RELEASE_BRANCH} into dev"
-          git push origin dev
-
-      # Push the tag to the dev branch (so it can be reflected in the dev branch)
-      - name: Push tag to dev branch
-        run: |
-          git checkout dev
-          git pull origin dev
-          git push --tags origin develop
-
-      # Delete the release branch remotely
-      - name: Delete release branch
-        run: |
-          git push origin --delete "${{ env.RELEASE_BRANCH }}"
-          echo "Release branch ${RELEASE_BRANCH} deleted."
-
-      # Fast-forward merge the tag into the master branch
-      - name: Fast-forward merge tag into master
-        run: |
-          git checkout main
-          git pull origin main
-          git merge --ff-only "${GITHUB_REF##*/}"
-          git push origin main
-          echo "Fast-forward merged ${GITHUB_REF##*/} into master."
-
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
@@ -68,6 +23,6 @@ jobs:
           file: Dockerfile
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: ${{ vars.DOCKERHUB_USERNAME }}/demo-python-app:${{ env.TAG_NAME }}
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/demo-python-app:${GITHUB_REF##*/}
           cache-from: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/demo-python-app:cache
           cache-to: type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/demo-python-app:cache,mode=max
