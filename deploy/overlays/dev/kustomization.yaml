@@ -3,3 +3,7 @@ kind: Kustomization
 
 resources:
   - ../../base
+
+images:
+  - name: saarwasserman/demo-python-app
+    newTag: latest

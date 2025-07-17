@@ -9,3 +9,8 @@ patches:
       kind: HorizontalPodAutoscaler
       name: demo-python-app
     path: hpa.yaml
+
+
+images:
+  - name: saarwasserman/demo-python-app
+    newTag: latest
