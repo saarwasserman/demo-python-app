@@ -12,4 +12,4 @@ patches:
 
 images:
   - name: saarwasserman/demo-python-app
-    newTag: latest
+    newTag: v0.1.0
