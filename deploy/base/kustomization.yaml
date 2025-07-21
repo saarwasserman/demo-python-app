@@ -5,3 +5,10 @@ resources:
   - service.yaml
   - deployment.yaml
   - hpa.yaml
+
+labels:
+  - pairs:
+      app: demo-python-app
+      # version: v0.1.0  # uncomment once deployment name that include version is dynamiclly managed
+    includeSelectors: true
+    includeTemplates: true  # redundant onve includeSelectors is set to true
