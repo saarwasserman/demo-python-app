@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: demo-python-app
-        image: docker.io/saarwasserman/demo-python-app:v0.1.0
+        image: docker.io/saarwasserman/demo-python-app  # version is set in the kustomization overlay 
         resources:
           limits:
             memory: "128Mi"
