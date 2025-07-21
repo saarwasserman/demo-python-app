@@ -5,5 +5,5 @@ resources:
   - ../../base
 
 images:
-  - name: saarwasserman/demo-python-app
-    newTag: latest
+  - name: docker.io/saarwasserman/demo-python-app
+    newTag: v0.1.0 # {"$imagepolicy": "flux-system:demo-python-app"}
