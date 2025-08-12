@@ -1,15 +1,15 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ .Chart.Name }}
+  name: {{ .Chart.Name }}-{{ .Values.appVersion | replace "." "-" }}
   namespace: apps
   labels:
-    app: {{ .Chart.Name }}
+    app: {{ .Chart.Name }}-{{ .Values.appVersion | replace "." "-" }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: demo-python-app
+    name: {{ .Chart.Name }}-{{ .Values.appVersion | replace "." "-" }}
   minReplicas: {{ .Values.minReplicas }}
   maxReplicas: {{ .Values.maxReplicas }}
   metrics:
