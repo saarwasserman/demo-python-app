@@ -5,4 +5,4 @@
 # 1. It seems fluxcd can update the values file but not the Chart.yaml
 #    so i didn't want to start adding scripts to the ci/cd pipeline
 # 2. 
-appVersion: "0.0.0"
+appVersion: v0.1.5

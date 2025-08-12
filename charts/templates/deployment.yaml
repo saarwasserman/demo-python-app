@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Chart.Name }}-{{ .Values.appVersion | replace "." "_" }}
+  name: {{ .Chart.Name }}-{{ .Values.appVersion | replace "." "-" }}
   namespace: apps
   labels:
     app: {{ .Chart.Name }}
@@ -9,13 +9,13 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: {{ .Chart.Name }}-{{ .Values.appVersion | replace "." "_" }}
+      app: {{ .Chart.Name }}-{{ .Values.appVersion | replace "." "-" }}
       version: {{ .Values.appVersion }}
   replicas: 1
   template:
     metadata:
       labels:
-        app: {{ .Chart.Name }}-{{ .Values.appVersion | replace "." "_" }}
+        app: {{ .Chart.Name }}-{{ .Values.appVersion | replace "." "-" }}
         version: {{ .Values.appVersion }}
     spec:
       containers:
