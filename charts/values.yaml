@@ -6,3 +6,6 @@
 #    so i didn't want to start adding scripts to the ci/cd pipeline
 # 2. avoid confusion with the appVersion in Chart.yaml
 appVersion: v0.1.5
+
+minReplicas: 2
+maxReplicas: 3
