@@ -5,7 +5,7 @@
 # 1. It seems fluxcd can update the values file but not the Chart.yaml
 #    so i didn't want to start adding scripts to the ci/cd pipeline
 # 2. avoid confusion with the appVersion in Chart.yaml
-appVersion: v0.1.5
+appVersion: v0.1.5  # {"$imagepolicy": "flux-system:demo-python-app:tag"}
 
 minReplicas: 2
 maxReplicas: 3
