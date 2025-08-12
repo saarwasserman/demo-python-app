@@ -4,5 +4,5 @@
 #    so i didn't want to start adding scripts to the ci/cd pipeline
 # 2. avoid confusion with the appVersion in Chart.yaml
 appVersion: v0.1.6 # {"$imagepolicy": "flux-system:demo-python-app:tag"}
-minReplicas: 2
+minReplicas: 1
 maxReplicas: 3
